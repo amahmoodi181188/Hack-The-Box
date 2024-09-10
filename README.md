@@ -10,6 +10,7 @@ According to the result of nmap you need to take your next step:
   * if port 6379 was open it means that on the target machine, Redis database (which is a in-memory db) exist and related port is open. so first thing you can test is check if you can connect with this db (run this command: "redis-cli -h [target IP] and just enter when it wants password). if it works and you coneected to the db, you can use "info" for have some data about this instance, "select" to select databases using "select [index]", then you can use "keys *" to see all keys inside the db you cose and finally "get [key name you want]" to see its content, ... (redis-cli is a tool for connecting to redis db and -h use for give it host IP addresses)
   * if port 3389 was open it means that on the target machine, RDP or Remote desktop Protocol (or ms-wbt-server service/ Microsoft Terminal Services) exist and related port is open. so first thing you can test is check if you can connect remotely to this server using "xfreerdp" tool and default user (Administrator which doesn't need any password), for testing this just run this command: "xfreerdp /u:Administrator /v:[target IP] and just enter). if it works and you connected to the server using remote desktop and already have access to the GUI of windows server!
   * if port 80 was open, one of the thing we can do would ve doing directory Bruteforce or "dir busting" using "gobuster" tool which is really powerfull one. just need to run this command: "gobuster dir -u [target IP] -w [address of your bruteforc file]". you can use "-x php" for example to search only php files on the target IP. the result of gobuster with response code 200 means there is such directory on the target machine.
+  * if port 27017 was open, it means that on the target machine, Mongodb database (which is a NoSQL db) exist and related port is open. so first thing you can test is check if you can connect with this db (run this command: "mongosh mongodb://[target IP]" or "mongo mongodb://[target IP]"). if it works and you coneected to the db, you can use "show dbs" for list all databases on this db, or "use [db_name]" to select one of the databases listed, or using "show collections" to list all content in the selected database and finally use "db.[collection_name].find().pretty()" to see the content of collections, ...
 
 
 
@@ -27,6 +28,7 @@ According to the result of nmap you need to take your next step:
   5. port 6379 >> redis-cli -h [target IP]
   6. port 3389 >> xfreerdp /u:Administrator /v:[target IP]
   7. port 80 >> gobuster dir -u [target IP] -w [address of your bruteforc file]
+  8. port 20017 >>  "mongosh mongodb://[target IP]" or "mongo mongodb://[target IP]" >> "show dbs" >> "use [db_name]" >> "show collections" >> "db.[collection_name].find().pretty()"
 
 
 List of Tools need to install:
@@ -36,3 +38,4 @@ List of Tools need to install:
 4. redis-cli
 5. xfreedp
 6. gobuster
+7. mongodb-clients

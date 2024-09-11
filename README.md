@@ -12,6 +12,7 @@ According to the result of nmap you need to take your next step:
   * if port 80 was open, one of the thing we can do would ve doing directory Bruteforce or "dir busting" using "gobuster" tool which is really powerfull one. just need to run this command: "gobuster dir -u [target IP] -w [address of your bruteforc file]". you can use "-x php" for example to search only php files on the target IP. the result of gobuster with response code 200 means there is such directory on the target machine.
   * if port 27017 was open, it means that on the target machine, Mongodb database (which is a NoSQL db) exist and related port is open. so first thing you can test is check if you can connect with this db (run this command: "mongosh mongodb://[target IP]" or "mongo mongodb://[target IP]"). if it works and you coneected to the db, you can use "show dbs" for list all databases on this db, or "use [db_name]" to select one of the databases listed, or using "show collections" to list all content in the selected database and finally use "db.[collection_name].find().pretty()" to see the content of collections, ...
   * if port 873 was open it means that on the target machine, Rsync protocol is open (rsync is typically used for synchronizing files and directories between two different systems). so first thing you can test is check if you can connect with "anonymous' user as it needs no password to connect (run this command: "rsync --list-only rsync://[target IP]"). this commmand list shared foldors on this target machine with their addresses. if it works, next you can repeat this process to search the address you found and finaly find the address and file you want from that server and finally downlaod files on your machine using this command: "rsync rsync://[target ip]/[adress and name of folder] /[local address you want]"
+  * if port 3306 was open, it means that on the target machine, MariaDB or mysql database exist and related port is open. so first thing you can test is check if you can connect with this db with rood username which is not need any password by default (run this command: "mysql -u root -h [target IP]"). if it works and you coneected to the db, you can use "show databases;" for list all databases on this db, then you can call "use [db_name]" to select one of the databases listed, then using "show tables" to list all tables inside that db and then use "select * from [table_name];" , ...
 
 
 
@@ -31,6 +32,7 @@ According to the result of nmap you need to take your next step:
   7. port 80 >> gobuster dir -u [target IP] -w [address of your bruteforc file]
   8. port 20017 >>  "mongosh mongodb://[target IP]" or "mongo mongodb://[target IP]" >> "show dbs" >> "use [db_name]" >> "show collections" >> "db.[collection_name].find().pretty()"
   9. port 873 >> "rsync --list-only rsync://[target IP]" >> "rsync rsync://[target ip]/[adress and name of folder] /[local address you want]"
+  10. port 3306 >> "mysql -u root -h [target IP]"
 
 
 List of Tools need to install:
@@ -42,3 +44,4 @@ List of Tools need to install:
 6. gobuster
 7. mongodb-clients
 8. rsync
+9. mysql

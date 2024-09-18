@@ -29,7 +29,8 @@ According to the result of nmap you need to take your next step:
   4. port 445 >> smbclient -N -L [target IP] >> smbclient //[target IP]/[folder you want]
   5. port 6379 >> redis-cli -h [target IP]
   6. port 3389 >> xfreerdp /u:Administrator /v:[target IP]
-  7. port 80 >> gobuster dir -u [target IP] -w [address of your bruteforc file]
+  7. port 80 >> "gobuster dir -u [target IP] -w [address of your bruteforc file]" for directory bruteforcing or use "gobuster vhost -w /opt/useful/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u
+[URL address] for subdomain enumeraiton
   8. port 20017 >>  "mongosh mongodb://[target IP]" or "mongo mongodb://[target IP]" >> "show dbs" >> "use [db_name]" >> "show collections" >> "db.[collection_name].find().pretty()"
   9. port 873 >> "rsync --list-only rsync://[target IP]" >> "rsync rsync://[target ip]/[adress and name of folder] /[local address you want]"
   10. port 3306 >> "mysql -u root -h [target IP]"
